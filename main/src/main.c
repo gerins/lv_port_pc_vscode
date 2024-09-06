@@ -47,10 +47,13 @@ static lv_display_t *hal_init(int32_t w, int32_t h);
 /**********************
  *      TYPEDEFS
  **********************/
+// LV_FONT_DECLARE(custom_symbol_16)
 
 /**********************
  *      VARIABLES
  **********************/
+// const char *tempLogo = "\xEF\x8B\x88";
+// const char *lightingBoltLogo = "\xEF\x83\xA7";
 
 /**********************
  *  STATIC PROTOTYPES
@@ -67,7 +70,7 @@ lv_obj_t *CreateBaseArc(uint32_t indicatorColour, uint32_t backgroundColour, int
   lv_arc_set_value(backgroundArc, 0);
   lv_arc_set_bg_angles(backgroundArc, 90, 270);                // Arc length, 90 start at 6 o'clock
   lv_obj_center(backgroundArc);                                // Middle position
-  lv_obj_set_size(backgroundArc, arcSize + 4, arcSize + 4);    // Set width and height
+  lv_obj_set_size(backgroundArc, arcSize + 5, arcSize + 5);    // Set width and height
   lv_obj_set_style_arc_width(backgroundArc, 20, LV_PART_MAIN); // Ketebalan arc
   lv_obj_remove_style(backgroundArc, NULL, LV_PART_KNOB);      // Remove knob
   lv_obj_remove_flag(backgroundArc, LV_OBJ_FLAG_CLICKABLE);    // Static arc
@@ -119,17 +122,22 @@ int main(int argc, char **argv)
   lv_obj_t *engineTempArc = CreateBaseArc(0xFF7D1716, 0xFF311410, 170, 0, 120);
   lv_arc_set_value(engineTempArc, 90);
   lv_obj_t *tempLabel = lv_label_create(lv_screen_active());           // Create text
-  lv_obj_align(tempLabel, LV_ALIGN_TOP_MID, 28, 35);                   // Position
+  lv_obj_align(tempLabel, LV_ALIGN_TOP_MID, 30, 35);                   // Position
   lv_obj_set_style_text_color(tempLabel, lv_color_hex(0xFF7D1716), 0); // Change text color
-  lv_label_set_text(tempLabel, "90c");
+  lv_label_set_text(tempLabel, "90 c");
+  // lv_obj_t *tempSymbol = lv_label_create(lv_scr_act());                 //
+  // lv_obj_align(tempSymbol, LV_ALIGN_CENTER, 0, -108);                   // Center position
+  // lv_obj_set_style_text_font(tempSymbol, &custom_symbol_16, 0);         // Change font style
+  // lv_obj_set_style_text_color(tempSymbol, lv_color_hex(0xFFD72749), 0); // Change text color
+  // lv_label_set_text(tempSymbol, tempLogo);                              // Set logo symbol
 
   // ARC 3
   lv_obj_t *voltArc = CreateBaseArc(0xFFFFC848, 0xFF524C20, 120, 0, 16);
   lv_arc_set_value(voltArc, 12);
   lv_obj_t *voltLabel = lv_label_create(lv_screen_active());           // Create text
-  lv_obj_align(voltLabel, LV_ALIGN_TOP_MID, 25, 60);                   // Position
+  lv_obj_align(voltLabel, LV_ALIGN_TOP_MID, 30, 60);                   // Position
   lv_obj_set_style_text_color(voltLabel, lv_color_hex(0xFFFFC848), 0); // Change text color
-  lv_label_set_text(voltLabel, "13v");
+  lv_label_set_text(voltLabel, "13.2v");
 
   lv_obj_t *label = lv_label_create(lv_screen_active());           // Create text
   lv_obj_align(label, LV_ALIGN_CENTER, 0, 0);                      // Center
